@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import { withAuth } from '@okta/okta-react';
 
 export default withAuth(
@@ -58,12 +57,6 @@ export default withAuth(
         <div className="jumbotron">
           <h1 className="display-4">Welcome To TimeLine</h1>
           {mainContent}
-          <CloudinaryContext cloudName="demo">
-          <div>
-          <Image publicId="" width="50" />
-          </div>
-          <Image publicId="" width="0.5" />
-          </CloudinaryContext>
         </div>
       );
     }
