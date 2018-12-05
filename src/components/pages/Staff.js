@@ -23,7 +23,7 @@ fetch('http://localhost:3001/moments', {
     description: info.description,
     date: info.date,
     location: info.location,
-    user_id: 1
+    user_id: 2
 
   })
 }).then(response => response.json())
@@ -33,9 +33,28 @@ fetch('http://localhost:3001/moments', {
   })
 })
 
-
-
 }
+
+deleteMoment = (e, info) => {
+  e.preventDefault()
+  fetch(`http://localhost:3001/moments/${info}`, {
+    method: "delete"
+  })
+    // this.setState({
+    //   momentArray:
+    // })
+let copyArray = [...this.state.momentArray].filter(moment => {
+  console.log(moment)
+  return moment.id !== info
+})
+
+this.setState({
+  momentArray: copyArray
+})
+
+  }
+
+
 
 
 
@@ -70,7 +89,7 @@ return (
       <div>
       <br></br>
       </div>
-      <VerticalTimeline momentInfo={this.state.momentArray}/>
+      <VerticalTimeline momentInfo={this.state.momentArray} momentDelete={this.deleteMoment}/>
 
 
       </div>

@@ -69,6 +69,12 @@ class Timeline extends Component {
 
   }
 
+  deleteMoment = (e, info) => {
+    e.preventDefault()
+    this.props.momentDelete(e, info)
+
+  }
+
   allMoments = () => {
 
     return this.props.momentInfo.map(mom => {
@@ -80,9 +86,9 @@ class Timeline extends Component {
                 iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                 icon=" "
                 >
-        Moment Title:<h4 className="vertical-timeline-element-title">{mom.title}</h4>
-        Moment Description:<h4 className="vertical-timeline-element-subtitle">{mom.description}</h4>
-      Moment location:<h4 className="vertical-timeline-element-subtitle">{mom.location}</h4>
+        <h1>Moment Title:</h1><h4 className="vertical-timeline-element-title">{mom.title}</h4>
+        <h1>Moment Description:</h1><h4 className="vertical-timeline-element-subtitle">{mom.description}</h4>
+      <h1>Moment location:</h1><h4 className="vertical-timeline-element-subtitle">{mom.location}</h4>
         {this.allImages(mom.id)}
         <p>
 
@@ -91,8 +97,8 @@ class Timeline extends Component {
         <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
         <script>cloudinary.setCloudName(dhtrapttx);</script>
         <a href="#" id="upload_widget_opener" onClick={() => this.imageSubmit(mom.id)}>Upload multiple images</a>
-
         </CloudinaryContext>
+        <button onClick={(e) => this.deleteMoment(e, mom.id)}>Delete Your Moment</button>
 
         </VerticalTimelineElement>
         </VerticalTimeline>
