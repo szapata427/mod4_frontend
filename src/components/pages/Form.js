@@ -34,8 +34,8 @@ onSubmitHandler = (e, info) => {
       <br></br>
       <textarea name="description" placeholder="Description" onChange={this.changeHandler}/>
       <br></br>
-      <br></br>
       <textarea name="location" placeholder="Location" onChange={this.changeHandler}/>
+      <br></br>
       <button>Submit</button>
 
     </form>

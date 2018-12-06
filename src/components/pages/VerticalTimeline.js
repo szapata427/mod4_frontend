@@ -101,8 +101,8 @@ commentSubmit = (e, info, id) => {
      return copyArray.map(image => {
       return  <div><img className="moment-image" dataid={image.id} src={image.title} alt="hope it works" onClick={this.imageClick}/>
       <p>Comment: {image.comment}</p>
-      <input type ="text" name="comment" placeholder="Comment" onChange={this.commentInput} />
-           <button onClick={(e)=> this.commentSubmit(e, this.state, image.id)}>Comment Me</button>
+      <input class="form-control" type ="text" name="comment" placeholder="Comment" onChange={this.commentInput} />
+           <button class="btn btn-primary" onClick={(e)=> this.commentSubmit(e, this.state, image.id)}>Comment Me</button>
            </div>
 
       })
@@ -134,9 +134,9 @@ commentSubmit = (e, info, id) => {
                 iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                 icon=" "
                 >
-        <h1>Moment Title:</h1><h4 className="vertical-timeline-element-title">{mom.title}</h4>
-        <h1>Moment Description:</h1><h4 className="vertical-timeline-element-subtitle">{mom.description}</h4>
-      <h1>Moment location:</h1><h4 className="vertical-timeline-element-subtitle">{mom.location}</h4>
+        <h3>Moment Title:</h3><h4 id="moment-title" className="vertical-timeline-element-title">{mom.title}</h4>
+        <h3>Moment Description:</h3><h4 id="moment-title" className="vertical-timeline-element-subtitle">{mom.description}</h4>
+      <h3>Moment location:</h3><h4 id="moment-title" className="vertical-timeline-element-subtitle">{mom.location}</h4>
         {this.allImages(mom.id)}
         <p>
 
@@ -146,7 +146,7 @@ commentSubmit = (e, info, id) => {
         <script>cloudinary.setCloudName(dhtrapttx);</script>
         <a href="#" id="upload_widget_opener" onClick={() => this.imageSubmit(mom.id)}>Upload multiple images</a>
         </CloudinaryContext>
-        <button onClick={(e) => this.deleteMoment(e, mom.id)}>Delete Your Moment</button>
+        <button class="btn btn-primary" onClick={(e) => this.deleteMoment(e, mom.id)}>Delete Your Moment</button>
 
         </VerticalTimelineElement>
         </VerticalTimeline>

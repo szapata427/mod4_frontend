@@ -36,7 +36,7 @@ export default withAuth(
         <div>
           <p className="lead">
             Uh oh!,{' '}
-            <Link to="/staff">click here</Link>
+            <Link to="/timeline">click here</Link>
           </p>
           <button className="btn btn-light btn-lg" onClick={this.logout}>
             Logout
