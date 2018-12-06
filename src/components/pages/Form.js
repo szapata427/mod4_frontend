@@ -6,7 +6,8 @@ class Form extends Component {
   state = {
     title: "",
     date: null,
-    description: ""
+    description: "",
+    location: ""
 
 
   }
@@ -21,19 +22,6 @@ class Form extends Component {
 onSubmitHandler = (e, info) => {
   e.preventDefault()
   this.props.moment(info)
-  // fetch('http://localhost:3001/moments', {
-  //   method: "POST",
-  //   headers: {
-  //     "content-type": "application/json"
-  //   },
-  //   body: JSON.stringify({
-  //     title: info.title,
-  //     description: info.description,
-  //     date: info.date,
-  //     location: info.location,
-  //     user_id: 1
-  //   })
-  // })
 
 }
 

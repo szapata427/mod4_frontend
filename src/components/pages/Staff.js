@@ -40,9 +40,7 @@ deleteMoment = (e, info) => {
   fetch(`http://localhost:3001/moments/${info}`, {
     method: "delete"
   })
-    // this.setState({
-    //   momentArray:
-    // })
+
 let copyArray = [...this.state.momentArray].filter(moment => {
   console.log(moment)
   return moment.id !== info
@@ -81,6 +79,7 @@ this.setState({
 
   render() {
 const { currentUserEmail, currentUserName } = this.state
+console.log(this.state.momentArray)
 
 return (
     <div>

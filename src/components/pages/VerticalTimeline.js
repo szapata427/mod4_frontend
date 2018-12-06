@@ -8,11 +8,12 @@ import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 class Timeline extends Component {
 
   state = {
-    imageArray: []
+    imageArray: [],
+    comment: ""
   }
 
   imageSubmit = (mom) => {
-
+    console.log(mom)
     var myUploadWidget;
      // document.getElementById("upload_widget_opener").addEventListener("click", function() {
     myUploadWidget = window.cloudinary.openUploadWidget({
@@ -59,15 +60,62 @@ class Timeline extends Component {
     })
 }
 
+commentInput = (event) => {
+  // console.log(event)
+  console.log(event.target.value)
+  this.setState({
+    comment: event.target.value
+  })
+}
+
+commentSubmit = (e, info, id) => {
+  e.preventDefault()
+  console.log(info.comment)
+  fetch(`http://localhost:3001/pictures/${id}`, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      comment: info.comment
+    })
+  }).then(response => response.json())
+  .then(data => {
+    this.setState({
+      imageArray: data
+    })
+  })
+
+  this.setState({
+    comment: ""
+  })
+}
+
+// imageClick = (event, info) => {
+//   console.log(event.target, info)
+// }
 
   allImages = (id) => {
     let copyArray = [...this.state.imageArray].filter(img =>  img.moment_id === id)
 
      return copyArray.map(image => {
-      return <img src={image.title} alt="hope it works" />
-    })
+      return  <div><img className="moment-image" dataid={image.id} src={image.title} alt="hope it works" onClick={this.imageClick}/>
+      <p>Comment: {image.comment}</p>
+      <input type ="text" name="comment" placeholder="Comment" onChange={this.commentInput} />
+           <button onClick={(e)=> this.commentSubmit(e, this.state, image.id)}>Comment Me</button>
+           </div>
+
+      })
 
   }
+
+  // commentImage = () => {
+  //   let images = [...this.state.imageArray].map(img => {
+  //     return <div><input type ="text" name="comment" placeholder="Comment" onChange={this.commentInput} />
+  //     <button onClick={(e)=> this.commentSubmit(e, this.state, img.id)}>Comment Me</button></div>
+  //   })
+
+  // }
 
   deleteMoment = (e, info) => {
     e.preventDefault()
@@ -78,7 +126,7 @@ class Timeline extends Component {
   allMoments = () => {
 
     return this.props.momentInfo.map(mom => {
-      console.log(mom.date)
+
       return   <VerticalTimeline>
             <VerticalTimelineElement
                 className="vertical-timeline-element--work"
@@ -107,7 +155,7 @@ class Timeline extends Component {
 
 
 render() {
-
+  console.log(this.state.imageArray)
   return(
   <div>
     {this.allMoments()}
